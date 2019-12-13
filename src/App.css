@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #212529;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,9 +24,28 @@
   color: white;
 }
 
+.timer-container {
+  width: 1000px;
+}
+
+.progess-container {
+  width: 100%;
+  height: 1px;
+  margin-bottom: 5px;
+  overflow: visible;
+  display: flex;
+  background-color: grey;
+}
+
+.runner {
+  display: inline-block;
+  margin-top: -40px;
+  margin-right: -25px;
+}
+
 .timer-normal {
   font-size: calc(240px + 2vmin);
-  color: #61dafb;
+  color: #0069d9;
 }
 
 .timer-warn {

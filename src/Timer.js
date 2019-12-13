@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.css";
+import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 
 function padZero(num) {
   return (num < 10 ? "0" : "") + num;
@@ -40,6 +41,7 @@ class Timer extends React.Component {
     this.state = {
       status: "normal",
       endTime: endTime,
+      timerMS: timerMS,
       timeRemain: timerMS
     };
   }
@@ -64,6 +66,7 @@ class Timer extends React.Component {
         this.setState({
           status: status,
           endTime: this.state.endTime,
+          timerMS: this.state.timerMS,
           timeRemain: timeLeft
         });
       }
@@ -80,14 +83,33 @@ class Timer extends React.Component {
     if (this.state.status) {
       cName = "timer-" + this.state.status;
     }
+
+    let timePassed = this.state.timerMS - this.state.timeRemain;
+    let partCovered = (timePassed / this.state.timerMS) * 100;
+
+    const progessStyle = {
+      width: partCovered + "%",
+      height: "1px",
+      backgroundColor: "white",
+      display: "inline-block"
+    };
+
     return (
-      <div className={cName}>
-        {timeLeft.hrs}
-        <span className="handle">h</span>
-        {timeLeft.mins}
-        <span className="handle">m</span>
-        {timeLeft.secs}
-        <span className="handle">s</span>
+      <div className="timer-container">
+        <div className={cName}>
+          {timeLeft.hrs}
+          <span className="handle">h</span>
+          {timeLeft.mins}
+          <span className="handle">m</span>
+          {timeLeft.secs}
+          <span className="handle">s</span>
+        </div>
+        <div className="progess-container">
+          <div className="progress-bar" style={progessStyle}></div>
+          <div className="runner">
+            <DirectionsRunIcon />
+          </div>
+        </div>
       </div>
     );
   }
