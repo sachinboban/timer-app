@@ -39,8 +39,15 @@ class Timer extends React.Component {
     let endTime = new Date();
     endTime.setTime(endTimeMS);
 
+    let status = "normal";
+    if (timerMS < timeToMS(0, 5, 0)) {
+      status = "danger";
+    } else if (timerMS < timeToMS(0, 15, 0)) {
+      status = "warn";
+    }
+
     this.state = {
-      status: "normal",
+      status: status,
       endTime: endTime,
       timerMS: timerMS,
       timeRemain: timerMS
@@ -50,7 +57,6 @@ class Timer extends React.Component {
   componentDidMount() {
     this.interval = setInterval(() => {
       if (this.state.status) {
-        console.log(this.state.status);
         let currentTime = new Date();
         let timeLeft = this.state.endTime - currentTime;
         let status = this.state.status;

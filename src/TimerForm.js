@@ -18,7 +18,6 @@ class TimerForm extends React.Component {
   };
 
   handleSubmit = event => {
-    console.log(this.state);
     this.props.callback(
       parseInt(this.state.hrs),
       parseInt(this.state.mins),

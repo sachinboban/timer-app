@@ -16,16 +16,7 @@ class App extends React.Component {
     };
   }
 
-  startTimerApp = () => {
-    this.setState({
-      status: 1,
-      hrs: this.state.hrs,
-      mins: this.state.mins,
-      secs: this.state.secs
-    });
-  };
-
-  stopTimerApp = () => {
+  stopTimer = () => {
     this.setState({
       status: null,
       hrs: this.state.hrs,
@@ -34,7 +25,7 @@ class App extends React.Component {
     });
   };
 
-  getFormSubmission = (hrs, mins, secs) => {
+  startTimer = (hrs, mins, secs) => {
     this.setState({
       status: 1,
       hrs: hrs,
@@ -55,7 +46,7 @@ class App extends React.Component {
           <Button
             variant="contained"
             color="default"
-            onClick={this.stopTimerApp}
+            onClick={this.stopTimer}
             startIcon={<ReplayIcon />}
           >
             Reset
@@ -70,7 +61,7 @@ class App extends React.Component {
       return (
         <div className="App">
           <header className="App-header">
-            <TimerForm callback={this.getFormSubmission} />
+            <TimerForm callback={this.startTimer} />
           </header>
         </div>
       );
