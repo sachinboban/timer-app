@@ -23,7 +23,7 @@ function MStotime(msecs) {
   mins = Math.floor(tempMS / (60 * 1000));
   tempMS = tempMS - mins * 60 * 1000;
 
-  secs = Math.ceil(tempMS / 1000);
+  secs = Math.floor(tempMS / 1000);
 
   return { hrs: padZero(hrs), mins: padZero(mins), secs: padZero(secs) };
 }
