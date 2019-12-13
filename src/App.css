@@ -64,8 +64,22 @@
 }
 
 .button {
-  float: left;
+  float: block;
   margin: 2px;
+}
+
+.form {
+  width: 1000px;
+}
+
+input {
+  border: none;
+  font-size: calc(240px + 2vmin);
+  color: grey;
+  background-color: #212529;
+  width: 293px;
+  text-align: center;
+  font-family: inherit;
 }
 
 @keyframes App-logo-spin {

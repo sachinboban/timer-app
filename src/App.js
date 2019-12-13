@@ -1,22 +1,18 @@
 import React from "react";
 import "./App.css";
 import Timer from "./Timer";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import TimerForm from "./TimerForm";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import Button from "@material-ui/core/Button";
-
-const defaultHrs = 2;
-const defaultMins = 0;
-const defaultSecs = 0;
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       status: null,
-      hrs: defaultHrs,
-      mins: defaultMins,
-      secs: defaultSecs
+      hrs: null,
+      mins: null,
+      secs: null
     };
   }
 
@@ -32,34 +28,41 @@ class App extends React.Component {
   stopTimerApp = () => {
     this.setState({
       status: null,
-      hrs: defaultHrs,
-      mins: defaultMins,
-      secs: defaultSecs
+      hrs: this.state.hrs,
+      mins: this.state.mins,
+      secs: this.state.secs
     });
   };
 
-  getHrsLeft = () => {
-    if (this.state.hrs < 10) {
-      return "0" + this.state.hrs;
-    } else {
-      return this.state.hrs;
-    }
+  getFormSubmission = (hrs, mins, secs) => {
+    this.setState({
+      status: 1,
+      hrs: hrs,
+      mins: mins,
+      secs: secs
+    });
   };
 
-  getMinsLeft = () => {
-    if (this.state.mins < 10) {
-      return "0" + this.state.mins;
-    } else {
-      return this.state.mins;
-    }
-  };
-
-  getSecsLeft = () => {
-    if (this.state.secs < 10) {
-      return "0" + this.state.secs;
-    } else {
-      return this.state.secs;
-    }
+  renderTimer = () => {
+    return (
+      <header className="App-header">
+        <Timer
+          hrs={this.state.hrs}
+          mins={this.state.mins}
+          secs={this.state.secs}
+        />
+        <div className="button">
+          <Button
+            variant="contained"
+            color="default"
+            onClick={this.stopTimerApp}
+            startIcon={<RotateLeftIcon />}
+          >
+            Reset
+          </Button>
+        </div>
+      </header>
+    );
   };
 
   render() {
@@ -67,52 +70,12 @@ class App extends React.Component {
       return (
         <div className="App">
           <header className="App-header">
-            <div className="timer-container">
-              <div className="timer-normal">
-                {this.getHrsLeft()}
-                <span className="handle">h</span>
-                {this.getMinsLeft()}
-                <span className="handle">m</span>
-                {this.getSecsLeft()}
-                <span className="handle">s</span>
-              </div>
-              <div className="progess-container"></div>
-            </div>
-            <div className="button">
-              <Button
-                variant="contained"
-                color="default"
-                onClick={this.startTimerApp}
-                startIcon={<ArrowForwardIosIcon />}
-              >
-                Start
-              </Button>
-            </div>
+            <TimerForm callback={this.getFormSubmission} />
           </header>
         </div>
       );
     } else {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <Timer
-              hrs={this.state.hrs}
-              mins={this.state.mins}
-              secs={this.state.secs}
-            />
-            <div className="button">
-              <Button
-                variant="contained"
-                color="default"
-                onClick={this.stopTimerApp}
-                startIcon={<RotateLeftIcon />}
-              >
-                Reset
-              </Button>
-            </div>
-          </header>
-        </div>
-      );
+      return <div className="App">{this.renderTimer()}</div>;
     }
   }
 }
