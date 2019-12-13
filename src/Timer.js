@@ -77,13 +77,7 @@ class Timer extends React.Component {
     clearInterval(this.interval);
   }
 
-  render() {
-    let timeLeft = MStotime(this.state.timeRemain);
-    let cName = "timer-out";
-    if (this.state.status) {
-      cName = "timer-" + this.state.status;
-    }
-
+  renderProgressBar = () => {
     let timePassed = this.state.timerMS - this.state.timeRemain;
     let partCovered = (timePassed / this.state.timerMS) * 100;
 
@@ -95,6 +89,23 @@ class Timer extends React.Component {
     };
 
     return (
+      <div className="progess-container">
+        <div className="progress-bar" style={progessStyle}></div>
+        <div className="runner">
+          <DirectionsRunIcon />
+        </div>
+      </div>
+    );
+  };
+
+  render() {
+    let timeLeft = MStotime(this.state.timeRemain);
+    let cName = "timer-out";
+    if (this.state.status) {
+      cName = "timer-" + this.state.status;
+    }
+
+    return (
       <div className="timer-container">
         <div className={cName}>
           {timeLeft.hrs}
@@ -104,12 +115,7 @@ class Timer extends React.Component {
           {timeLeft.secs}
           <span className="handle">s</span>
         </div>
-        <div className="progess-container">
-          <div className="progress-bar" style={progessStyle}></div>
-          <div className="runner">
-            <DirectionsRunIcon />
-          </div>
-        </div>
+        {this.renderProgressBar()}
       </div>
     );
   }

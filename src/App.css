@@ -37,6 +37,12 @@
   background-color: grey;
 }
 
+.timer-normal,
+.timer-warn,
+.timer-out {
+  font-size: calc(240px + 2vmin);
+}
+
 .runner {
   display: inline-block;
   margin-top: -40px;
@@ -44,17 +50,14 @@
 }
 
 .timer-normal {
-  font-size: calc(240px + 2vmin);
   color: #0069d9;
 }
 
 .timer-warn {
-  font-size: calc(240px + 2vmin);
   color: #e0a800;
 }
 
 .timer-out {
-  font-size: calc(240px + 2vmin);
   color: #c82333;
 }
 
