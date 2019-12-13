@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.css";
-import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
+import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
+import DirectionsBikeIcon from "@material-ui/icons/DirectionsBike";
 
 function padZero(num) {
   return (num < 10 ? "0" : "") + num;
@@ -22,7 +23,7 @@ function MStotime(msecs) {
   mins = Math.floor(tempMS / (60 * 1000));
   tempMS = tempMS - mins * 60 * 1000;
 
-  secs = Math.floor(tempMS / 1000);
+  secs = Math.ceil(tempMS / 1000);
 
   return { hrs: padZero(hrs), mins: padZero(mins), secs: padZero(secs) };
 }
@@ -58,7 +59,7 @@ class Timer extends React.Component {
           timeLeft = 0;
           status = null;
         } else if (timeLeft < timeToMS(0, 5, 0)) {
-          status = "out";
+          status = "danger";
         } else if (timeLeft < timeToMS(0, 15, 0)) {
           status = "warn";
         }
@@ -70,7 +71,7 @@ class Timer extends React.Component {
           timeRemain: timeLeft
         });
       }
-    }, 1000);
+    }, 1);
   }
 
   componentWillUnmount() {
@@ -88,19 +89,24 @@ class Timer extends React.Component {
       display: "inline-block"
     };
 
+    let icon =
+      this.state.timeRemain === 0 ? (
+        <EmojiPeopleIcon />
+      ) : (
+        <DirectionsBikeIcon />
+      );
+
     return (
       <div className="progess-container">
         <div className="progress-bar" style={progessStyle}></div>
-        <div className="runner">
-          <DirectionsRunIcon />
-        </div>
+        <div className="runner">{icon}</div>
       </div>
     );
   };
 
   render() {
     let timeLeft = MStotime(this.state.timeRemain);
-    let cName = "timer-out";
+    let cName = "timer-danger";
     if (this.state.status) {
       cName = "timer-" + this.state.status;
     }

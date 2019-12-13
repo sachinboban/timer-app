@@ -39,7 +39,7 @@
 
 .timer-normal,
 .timer-warn,
-.timer-out {
+.timer-danger {
   font-size: calc(240px + 2vmin);
 }
 
@@ -57,7 +57,7 @@
   color: #e0a800;
 }
 
-.timer-out {
+.timer-danger {
   color: #c82333;
 }
 
@@ -83,6 +83,10 @@ input {
   width: 293px;
   text-align: center;
   font-family: inherit;
+}
+
+input:focus {
+  outline: none;
 }
 
 @keyframes App-logo-spin {

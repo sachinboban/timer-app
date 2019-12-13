@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Timer from "./Timer";
 import TimerForm from "./TimerForm";
-import RotateLeftIcon from "@material-ui/icons/RotateLeft";
+import ReplayIcon from "@material-ui/icons/Replay";
 import Button from "@material-ui/core/Button";
 
 class App extends React.Component {
@@ -56,7 +56,7 @@ class App extends React.Component {
             variant="contained"
             color="default"
             onClick={this.stopTimerApp}
-            startIcon={<RotateLeftIcon />}
+            startIcon={<ReplayIcon />}
           >
             Reset
           </Button>
