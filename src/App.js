@@ -2,11 +2,12 @@ import React from "react";
 import "./App.css";
 import Timer from "./Timer";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import StopIcon from "@material-ui/icons/Stop";
+import RotateLeftIcon from "@material-ui/icons/RotateLeft";
+import Button from "@material-ui/core/Button";
 
-const defaultHrs = 2;
-const defaultMins = 0;
-const defaultSecs = 0;
+const defaultHrs = 0;
+const defaultMins = 5;
+const defaultSecs = 5;
 
 class App extends React.Component {
   constructor(props) {
@@ -74,9 +75,16 @@ class App extends React.Component {
               {this.getSecsLeft()}
               <span className="handle">s</span>
             </div>
-            <button onClick={this.startTimerApp}>
-              <PlayArrowIcon />
-            </button>
+            <div className="button">
+              <Button
+                variant="contained"
+                color="default"
+                onClick={this.startTimerApp}
+                startIcon={<PlayArrowIcon />}
+              >
+                Start
+              </Button>
+            </div>
           </header>
         </div>
       );
@@ -89,9 +97,16 @@ class App extends React.Component {
               mins={this.state.mins}
               secs={this.state.secs}
             />
-            <button onClick={this.stopTimerApp}>
-              <StopIcon />
-            </button>
+            <div className="button">
+              <Button
+                variant="contained"
+                color="default"
+                onClick={this.stopTimerApp}
+                startIcon={<RotateLeftIcon />}
+              >
+                Reset
+              </Button>
+            </div>
           </header>
         </div>
       );

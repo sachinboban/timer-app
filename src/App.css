@@ -31,17 +31,22 @@
 
 .timer-warn {
   font-size: calc(240px + 2vmin);
-  color: yellow;
+  color: #e0a800;
 }
 
 .timer-out {
   font-size: calc(240px + 2vmin);
-  color: red;
+  color: #c82333;
 }
 
 .handle {
   color: white;
   font-size: calc(40px + 2vmin);
+}
+
+.button {
+  float: left;
+  margin: 2px;
 }
 
 @keyframes App-logo-spin {
